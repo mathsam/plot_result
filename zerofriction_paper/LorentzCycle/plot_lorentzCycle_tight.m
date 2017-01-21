@@ -1,0 +1,71 @@
+figureHeight = 3.5*3; % unit inches
+width2height= 1/3;
+
+fig = figure('unit','inches','position',...
+                [0 0 figureHeight*width2height figureHeight]);
+ha = tight_subplot(3,1,0.028,[0.05 0.02],[0.15 0.02]) ;
+
+fontname = 'Helvetica';
+set(0,'defaultaxesfontname',fontname);
+fontsize1 = 11;
+fontsize2 = 10;
+markersize1 = 2;
+linewidth = 0.7;
+tagFontsize  = 10;
+axisFontsize = 12;
+
+axes(ha(1))
+
+kfx = [1 1e1 1e2 1e3 1e4];
+plot(kfx, LorentzCycle(:,1),'-ro','linewidth',linewidth);
+hold on
+plot(kfx,LorentzCycle(:,3),'-go','linewidth',linewidth);
+plot(kfx,-LorentzCycle(:,4),'-ko','linewidth',linewidth);
+plot(kfx,-LorentzCycle(:,6),'--ko','linewidth',linewidth);
+plot(kfx,LorentzCycle(:,3)-LorentzCycle(:,4)-LorentzCycle(:,6),'--bo','linewidth',linewidth);
+lgnd = legend('C(EAPE,EKE)','C(EKE,ZKE)','D_{fri}(EKE)','D_{vis}(EKE)',...
+       'C(EKE,ZKE)+D_{fri}(EKE)+D_{vis}(EKE)');
+set(lgnd, 'color', 'none', 'location','southwest','fontsize',fontsize2);
+set(gca,'XScale','log','YScale','log','fontsize',fontsize1);
+ylabel('dEKE/dt (W m^{-2})','fontweight','bold')
+ylim([5e-5, 2e0])
+blank_xlabel = ['','','','',''];
+set(gca,'xtick',kfx,'xticklabel',blank_xlabel)
+axis square
+legend boxoff
+
+
+axes(ha(2))
+
+plot(kfx,LorentzCycle(:,3),'-go','linewidth',linewidth);
+hold on
+plot(kfx,-LorentzCycle(:,2),'-ro','linewidth',linewidth);
+plot(kfx,-LorentzCycle(:,5),'-ko','linewidth',linewidth);
+plot(kfx,-LorentzCycle(:,2)-LorentzCycle(:,5),'--bo','linewidth',linewidth);
+lgnd = legend('C(EKE,ZKE)','C(ZKE,ZAPE)','D_{fri}(ZKE)',...
+       'C(ZKE,ZAPE)+D_{fri}(ZKE)');
+set(lgnd, 'color', 'none', 'location','southwest','fontsize',fontsize2);
+set(gca,'XScale','log','YScale','log','fontsize',fontsize1);
+ylabel('dZKE/dt (W m^{-2})','fontweight','bold')
+blank_xlabel = ['','','','','']
+set(gca,'xtick',kfx,'xticklabel',blank_xlabel)
+axis square
+legend boxoff
+
+
+axes(ha(3))
+
+plot(kfx,LorentzCycle(:,1)+LorentzCycle(:,2),'-ro','linewidth',linewidth);
+hold on;
+plot(kfx,-LorentzCycle(:,4)-LorentzCycle(:,5),'-ko','linewidth',linewidth);
+plot(kfx,-LorentzCycle(:,6),'--ko','linewidth',linewidth);
+plot(kfx,-LorentzCycle(:,4)-LorentzCycle(:,5)-LorentzCycle(:,6),'--bo','linewidth',linewidth);
+lgnd = legend('C(APE,KE)','D_{fri}(KE)','D_{vis}(KE)',...
+       'D_{fri}(KE)+D_{vis}(KE)');
+set(lgnd, 'color', 'none', 'location','southwest','fontsize',fontsize2);
+set(gca,'XScale','log','YScale','log','fontsize',fontsize1);
+xlabel('\tau_f (days)','fontweight','bold')
+ylabel('dKE/dt (W m^{-2})','fontweight','bold')
+set(gca,'xtick',kfx)
+axis square
+legend boxoff

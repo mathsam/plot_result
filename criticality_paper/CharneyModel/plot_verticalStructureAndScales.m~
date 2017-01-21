@@ -1,0 +1,39 @@
+% (2,1) subplots of wave vertical structure and scales
+figureWidth = 4; % unit inches
+width2height= 1/2;
+figure1 = figure('unit','inches','position',[0 0 figureWidth figureWidth/width2height]);
+fontname = 'Helvetica';
+set(0,'defaultaxesfontname',fontname);
+
+ha = tight_subplot(2,1,0.03,[0.2 0.1],[0.2 0.05]) ;
+
+axes(ha(1));
+plot(z,abs_psi,'b','linewidth',2)
+hold on
+plot(z,PTFlux,'r','linewidth',2)
+plot(z,PVFlux,'k','linewidth',2)
+xlim([0 4])
+ylim([0 1])
+%grid on
+set(gca,'fontsize',12,'LineWidth',1,...
+        'plotboxaspectratio',[4 3 1])
+xlabel('z','fontsize',12,'fontweight','bold')
+ylabel('Normalized values','fontsize',12,'fontweight','bold')
+legend1 = legend('|\psi|','Heat flux','PV flux');
+set(legend1,'fontsize',10,...
+            'location','northeast',...
+            'box','off')
+        
+% -------------- plot wave vertical scale vs. estimate --------------------
+axes(ha(2));
+plot(Sc,-1.074*exp(-0.5074*Sc)+1.096,'k','linewidth',2)
+hold on
+plot(Sc,1.09*Sc./(1+Sc),'--k','linewidth',2)
+set(gca,'fontsize',12,'LineWidth',1,...
+        'plotboxaspectratio',[4 3 1])
+xlabel('z','fontsize',12,'fontweight','bold')
+ylabel('Normalized values','fontsize',12,'fontweight','bold')
+legend1 = legend('|\psi|','Heat flux','PV flux');
+set(legend1,'fontsize',10,...
+            'location','northeast',...
+            'box','off')

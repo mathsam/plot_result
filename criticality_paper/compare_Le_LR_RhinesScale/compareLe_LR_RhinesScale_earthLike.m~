@@ -1,0 +1,91 @@
+% compare L_e with Rossby radius and RhinesScale
+
+%------------------------size of figure------------------------------------
+figureHeight = 3.5; % unit inches
+width2height= 2.0;
+figure1 = figure('unit','inches','position',[0 0 figureHeight*width2height figureHeight]);
+
+fontname = 'Helvetica';
+set(0,'defaultaxesfontname',fontname);
+fontsize1 = 12;
+fontsize2 = 10;
+markersize1 = 3;
+
+LR_fitCoeff = 2.644;
+Lbeta_fitCoeff = 3.177;
+
+ha = tight_subplot(1,2,0.04,[0.15 0.05],[0.1 0.02]) ;
+
+% ==================== plot RossbyR vs L_e first ==========================
+axes(ha(1))
+
+refX  = 100:100:10000;
+refY  = refX;
+plot(refX,refY,'--','linewidth',2,'color',[0.5 0.5 0.5])
+hold on
+
+h1 = plot(LR_fitCoeff*RossbyR_earthLike(:,1),eddyScaleFullGCM_earthLike(:,1),'--bo',...
+    'linewidth',1,'markeredgecolor','b','MarkerFaceColor','b',...
+    'markersize',markersize1);
+hold on
+h2 = plot(LR_fitCoeff*RossbyR_earthLike(:,2),eddyScaleFullGCM_earthLike(:,2),'--rs',...
+    'linewidth',1,'markeredgecolor','r','MarkerFaceColor','r',...
+    'markersize',markersize1);
+h3 = plot(LR_fitCoeff*RossbyR_earthLike(:,3),eddyScaleFullGCM_earthLike(:,3),'--m^',...
+    'linewidth',1,'markeredgecolor','m','MarkerFaceColor','m',...
+    'markersize',markersize1);
+h4 = plot(LR_fitCoeff*RossbyR_earthLike(:,4),eddyScaleFullGCM_earthLike(:,4),'--gd',...
+    'linewidth',1,'markeredgecolor','g','MarkerFaceColor','g',...
+    'markersize',markersize1);
+set(gca,'fontsize',fontsize1,'linewidth',1)
+set(gca,'XScale','log','YScale','log','TickLength',[0.02 0.02])
+set(gca,'XTickLabel',{'','500','','','','','1,000','2,000','','4000','5,000'},...
+    'XTick',[400 500 600 700 800 900 1000 2000 3000 4000 5000],...
+    'YTickLabel',{'','500','','','','','1,000','2,000','','4000','5,000'},...
+    'YTick',[400 500 600 700 800 900 1000 2000 3000 4000 5000])
+axis square
+box on
+xlim([1000 4000])
+ylim([1000  4000])
+
+xlabel({'2.6{\times}L_R (km)'},'FontSize',fontsize1,'FontWeight','bold');
+ylabel({'L_e (km)'},'FontSize',fontsize1,'FontWeight','bold');
+
+% ==================== plot RhinesScale vs L_e second=====================
+axes(ha(2))
+
+refX  = 100:100:10000;
+refY  = refX;
+plot(refX,refY,'--','linewidth',2,'color',[0.5 0.5 0.5])
+hold on
+
+h1 = plot(Lbeta_fitCoeff*RhinesScale_earthLike(:,1),eddyScaleFullGCM_earthLike(:,1),'--bo',...
+    'linewidth',1,'markeredgecolor','b','MarkerFaceColor','b',...
+    'markersize',markersize1);
+hold on
+h2 = plot(Lbeta_fitCoeff*RhinesScale_earthLike(:,2),eddyScaleFullGCM_earthLike(:,2),'--rs',...
+    'linewidth',1,'markeredgecolor','r','MarkerFaceColor','r',...
+    'markersize',markersize1);
+h3 = plot(Lbeta_fitCoeff*RhinesScale_earthLike(:,3),eddyScaleFullGCM_earthLike(:,3),'--m^',...
+    'linewidth',1,'markeredgecolor','m','MarkerFaceColor','m',...
+    'markersize',markersize1);
+h4 = plot(Lbeta_fitCoeff*RhinesScale_earthLike(:,4),eddyScaleFullGCM_earthLike(:,4),'--gd',...
+    'linewidth',1,'markeredgecolor','g','MarkerFaceColor','g',...
+    'markersize',markersize1);
+
+set(gca,'fontsize',fontsize1,'linewidth',1)
+set(gca,'XScale','log','YScale','log','TickLength',[0.02 0.02])
+set(gca,'XTickLabel',{'','500','','','','','1,000','2,000','','4000','5,000'},...
+    'XTick',[400 500 600 700 800 900 1000 2000 3000 4000 5000],...
+    'YTickLabel',{'','','','','','','','','','',''},...
+    'YTick',[400 500 600 700 800 900 1000 2000 3000 4000 5000])
+axis square
+box on
+xlim([1000 4000])
+ylim([1000 4000])
+
+xlabel({'3.2{\times}L_\beta (km)'},'FontSize',fontsize1,'FontWeight','bold');
+%ylabel({'L_e (km)'},'FontSize',fontsize1,'FontWeight','bold');
+
+legend1 = legend([h1(1) h2(1) h3(1) h4(1)],'30 K','60 K','90 K','120 K');
+set(legend1,'fontsize',fontsize2,'box','off','location','northwest')

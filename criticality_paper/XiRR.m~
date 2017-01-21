@@ -1,0 +1,33 @@
+% plot 0.5Sc*(1+0.5Sc)*RR, find out the constant factor before it
+% run these first
+expNum = 1
+Sc = zeros(6,9);
+RR = zeros(6,9);
+ES = zeros(6,9);
+
+%%
+Sc(expNum,:) = Sc_fullGCM;
+RR(expNum,:) = RR_fullGCM;
+ES(expNum,:) = EddyScale_fullGCM;
+expNum = expNum+1;
+
+%%
+XiRR_e = 0.5*Sc./(0.5*Sc+1).*RR;
+XiRR = Sc./(1+Sc).*RR;
+
+colorScheme = {'bo','rs','gd','m^','ch','k*'};
+colorMarker = 'brgmck';
+for expNum = 1:size(Sc,1)
+    plot(10.5*XiRR_e(expNum,:),ES(expNum,:),['--' char(colorScheme{expNum})],...
+    'linewidth',2,'markeredgecolor',colorMarker(expNum),'MarkerFaceColor',colorMarker(expNum),...
+    'markersize',8);
+hold on
+end
+set(gca,'fontsize',16)
+xlabel('10.5\xi_e{\times}Rossby Radius','fontsize',16)
+ylabel('Eddy Scale','fontsize',16)
+axis square
+xlim([500 5000])
+ylim([500 5000])
+plot(0:100:5000,0:100:5000,'--k','linewidth',2)
+%%

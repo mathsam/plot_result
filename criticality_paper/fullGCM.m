@@ -1,0 +1,122 @@
+% store the criticality, eddy K, Rossby radius, Rhines scale data
+% plot the relationships between them
+
+%{
+-------DESCRIPTION--------
+FluxHeightRatio is the height of the wave over scale height calculated from 
+potential temperature flux weighted by density
+FluxHeightRatio_orig is pT flux not weighted by density
+%}
+
+%% Feb16
+Sc_fullGCM = [0.4104, 0.264, 0.4095, 0.53, 0.74, 0.91, 1.12, 1.31, 1.73];
+effectSc_fullGCM = [0.376     0.254     0.283     0.375     0.568     0.691      0.84     0.955      1.28];
+RR_fullGCM = [935.39, 1396.8, 1249.4, 1090, 915, 851, 797, 782, 702];
+EddyK_fullGCM = [11.72, 10.38, 9.076, 8.515, 8.036, 7.342, 6.99, 6.73, 6.56];
+EddyScale_fullGCM = pi*6400./sqrt(EddyK_fullGCM.*(EddyK_fullGCM+1));
+EddyK_reducedGCM = [12.97, 11.26, 9.85, 8.83, 8.38, 7.78, 8.08, 8.26, 7.35];
+EddyScale_reducedGCM = pi*6400./sqrt(EddyK_reducedGCM.*(EddyK_reducedGCM+1));
+FluxHeightRatio_fullGCM = [0.3154684	0.2271501	0.2616437	0.3246250	0.3861926	0.4143159	0.4674563	0.4975406	0.5319665];
+FluxHeightRatio_fullGCM_orig = [0.415     0.371     0.394     0.517      0.68     0.771     0.901     0.998      1.08];
+PhaseShiftHeightRatio_fullGCM = [0.494     0.618     0.817         1      1.06      1.21      1.41      1.61      1.78];
+%% Feb14
+Sc_fullGCM  = [0.347 0.303 0.392 0.47 0.58 0.94 1.15 1.62 2.07];
+effectSc_fullGCM = [0.309     0.261     0.253     0.329      0.35     0.573     0.703     0.971      1.23];
+RR_fullGCM  = [826 1098 973 867 772 608 566 487 437];
+EddyK_fullGCM = [14.2 12.73 11.37 10.7 10.2 9.35 8.8 8.46 8.2];
+EddyScale_fullGCM = pi*6400./sqrt(EddyK_fullGCM.*(EddyK_fullGCM+1));
+EddyK_reducedGCM = [15.5, 14.02, 12.81, 11.9, 11.4, 10.4, 10.6, 10.4, 10.6];
+EddyScale_reducedGCM = pi*6400./sqrt(EddyK_reducedGCM.*(EddyK_reducedGCM+1));
+FluxHeightRatio_fullGCM = [0.2829340	0.3187194	0.3526406	0.3602474	0.3987604	0.4630073	0.5181776	0.5432143	0.6019964];
+FluxHeightRatio_fullGCM_orig = [0.453     0.528     0.547     0.623     0.706     0.892      1.05      1.21       1.4];
+PhaseShiftHeightRatio_fullGCM = [0.47     0.649     0.839         1      1.18      1.45      1.82      2.18      2.59];
+%% Feb15
+Sc_fullGCM  = [0.338 0.296 0.312 0.4 0.61 0.85 1.07 1.35 1.7];
+effectSc_fullGCM = [0.314     0.226     0.195     0.254      0.45     0.558     0.672     0.867      1.07];
+RR_fullGCM  = [681 852 857.7 740 537 463 434 403 372];
+EddyK_fullGCM = [17.85 15.63 13.7 12.56 11.77 11.06 10.58 10.1 9.83];
+EddyScale_fullGCM = pi*6400./sqrt(EddyK_fullGCM.*(EddyK_fullGCM+1));
+EddyK_reducedGCM = [19.2, 17.53, 15.61, 14.77, 13.96, 12.17, 10.79, 11.14, NaN];
+EddyScale_reducedGCM = pi*6400./sqrt(EddyK_reducedGCM.*(EddyK_reducedGCM+1));
+FluxHeightRatio_fullGCM = [0.2349190	0.3523033	0.3807411	0.3761978	0.4275282	0.5577940	0.5814131	0.6062930	0.6117510];
+FluxHeightRatio_fullGCM_orig = [0.504      0.61     0.623     0.658     0.783       0.9      1.04      1.18      1.38];
+PhaseShiftHeightRatio_fullGCM = [0.476     0.641     0.805         1      1.27      1.52      1.75      2.03      2.35];
+%% Feb17
+Sc_fullGCM  = [0.595 0.342 0.359 1.01 1.27 1.12 1.4 1.5 2.02];
+RR_fullGCM  = [245 389 434 208 186 210 192 190 163];
+EddyK_fullGCM = [28.2 25.5 22.15 20.6 19.2 17.8 16.9 16.5 16.1];
+EddyScale_fullGCM = pi*6400./sqrt(EddyK_fullGCM.*(EddyK_fullGCM+1));
+EddyK_reducedGCM = [31.8, 30.02, 29.03, 26.8, 23.87, 22.8, 21.13, NaN, NaN];
+EddyScale_reducedGCM = pi*6400./sqrt(EddyK_reducedGCM.*(EddyK_reducedGCM+1));
+FluxHeightRatio_fullGCM_orig = [0.644     0.688      0.79     0.841     0.919         1      1.13      1.23       1.4];
+PhaseShiftHeightRatio_fullGCM = [0.391     0.578     0.812         1      1.28      1.73         2      2.23      2.48];
+%% Feb18
+Sc_fullGCM  = [0.42 0.598 0.848 0.96 1.06 1.013 1.34 1.65 2.02];
+RR_fullGCM  = [443 341 299 287 274 300 265 243 223];
+EddyK_fullGCM = [23.12, 20.93, 18.73, 17.2, 15.86, 14.71, 13.93, 13.48, 13.07];
+EddyScale_fullGCM = pi*6400./sqrt(EddyK_fullGCM.*(EddyK_fullGCM+1));
+EddyK_reducedGCM = [27.32, 24.23, 22.04, 20.72, 19.26, 17.35, 16.57, NaN, NaN];
+EddyScale_reducedGCM = pi*6400./sqrt(EddyK_reducedGCM.*(EddyK_reducedGCM+1));
+FluxHeightRatio_fullGCM_orig = [0.353     0.578     0.694     0.752     0.797     0.949      1.09      1.29      1.48];
+PhaseShiftHeightRatio_fullGCM = [0.377     0.603     0.811         1      1.29      1.61      1.91      2.18      2.48];
+%% Feb19
+Sc_fullGCM  = [0.34 0.263 0.365 0.504 0.615 0.874 1.2 1.45 2.006];
+RR_fullGCM  = 2*[837 1179 989 848.7 750.2 644 559 523 449];
+EddyK_fullGCM = [14.66, 12.94, 11.23, 10.72, 10.01, 9.13, 8.65, 8.51, 8.3];
+EddyScale_fullGCM = pi*2*6400./sqrt(EddyK_fullGCM.*(EddyK_fullGCM+1));
+EddyK_reducedGCM = [16.59, 14.91, 13.36, 12.46, 11.93, 11.13, NaN, NaN, NaN];
+EddyScale_reducedGCM = pi*2*6400./sqrt(EddyK_reducedGCM.*(EddyK_reducedGCM+1));
+FluxHeightRatio_fullGCM_orig = [0.405     0.434     0.465     0.496      0.57     0.701     0.795     0.923      1.04];
+PhaseShiftHeightRatio_fullGCM = [0.494     0.629      0.85         1      1.21      1.62      1.95      2.27      2.41];
+%% plotting routine
+gamma = [0.1 0.2 0.5 1 2 5 10 20 40];
+Xi_fullGCM = Sc_fullGCM./(1+Sc_fullGCM);
+%effectXi_fullGCM = effectSc_fullGCM./(1+effectSc_fullGCM);
+effectXi_fullGCM = 0.5*Sc_fullGCM./(1+0.5*Sc_fullGCM);
+
+h = plot_semilogx(gamma,Sc_fullGCM/Sc_fullGCM(4),'r');
+hold on
+plot_semilogx(gamma,RR_fullGCM/RR_fullGCM(4),'b',h)
+plot_semilogx(gamma,EddyScale_fullGCM/EddyScale_fullGCM(4),'g',h)
+%plot_semilogx(gamma,FluxHeightRatio_fullGCM/FluxHeightRatio_fullGCM(4),'k',h)
+%plot_semilogx(gamma,FluxHeightRatio_fullGCM_1/FluxHeightRatio_fullGCM_1(4),'c',h)
+legend({'Sc';'Rossby Radius';'Eddy Scale';'h/H'},'fontsize',14)
+xlabel('\gamma','fontsize',16)
+ylabel('ratio about \gamma=1','fontsize',16)
+set(gca,'fontsize',14)
+
+h = plot_semilogx(gamma,EddyScale_fullGCM/EddyScale_fullGCM(4),'g');
+plot_semilogx(gamma,RR_fullGCM.*Xi_fullGCM/Xi_fullGCM(4)/RR_fullGCM(4),'c',h)
+plot_semilogx(gamma,RR_fullGCM.*effectXi_fullGCM/effectXi_fullGCM(4)/RR_fullGCM(4),'r',h)
+legend({'Eddy Scale';'\chi\times L_d';'\chi_e\times L_d'},'fontsize',14)
+xlabel('\gamma','fontsize',16)
+ylabel('ratio about \gamma=1','fontsize',16)
+set(gca,'fontsize',14)
+
+%% calculate the constant C in C*xi*Ld
+tSc_fullGCM = Sc_fullGCM./(2+Sc_fullGCM);
+x = [x tSc_fullGCM.*RR_fullGCM];
+y = [y EddyScale_fullGCM];
+
+%% compare eddy scale in full and reduced GCM
+% initialized with expNum = 1
+colorScheme = {'bo','rs','gd','m^','ch','k*'};
+colorMarker = 'brgmck';
+plot(EddyScale_fullGCM,EddyScale_reducedGCM,['--' char(colorScheme{expNum})],...
+    'linewidth',2,'markeredgecolor',colorMarker(expNum),'MarkerFaceColor',colorMarker(expNum),...
+    'markersize',8);
+hold on
+set(gca,'fontsize',16)
+xlabel('L_e in full GCM','fontsize',16)
+ylabel('L_e in reduced GCM','fontsize',16)
+expNum = expNum + 1;
+xlim([500 4500])
+ylim([500 4500])
+
+%% tmp
+tSc_fullGCM = Sc_fullGCM./(2+Sc_fullGCM);
+plot(10*tSc_fullGCM.*RR_fullGCM,EddyScale_fullGCM,'--cs','linewidth',2)
+
+xlabel('10\times(0.5{\xi}L_d/(1+0.5{\xi}))','fontsize',16)
+ylabel('Eddy Scale','fontsize',16)
+set(gca,'fontsize',14)
